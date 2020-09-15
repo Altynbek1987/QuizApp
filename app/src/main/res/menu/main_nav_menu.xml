@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/main_btn"
+        android:icon="@drawable/ic_shape"
+        android:title="Quiz" />
+
+    <item
+        android:id="@+id/history_btn"
+        android:icon="@drawable/ic_group"
+        android:title="History" />
+
+    <item
+        android:id="@+id/settings_btn"
+        android:icon="@drawable/ic_group1"
+        android:title="Settings" />
+
+</menu>
