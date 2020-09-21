@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
     </style>
 
         <style name="AppTheme.Launcher">
@@ -14,5 +15,4 @@
     <style name="SeekBar">
         <item name="android:background">@color/SeekBar</item>
     </style>
-
 </resources>
