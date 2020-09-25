@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@android:color/white"
-    tools:context=".QuizActivity">
+    tools:context=".quiz.QuizActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,8 +31,6 @@
             android:text="Geography"/>
     </LinearLayout>
 
-
-
     <SeekBar
         android:id="@+id/seek_bar_2"
         android:layout_width="175dp"
@@ -52,44 +50,14 @@
         android:layout_marginTop="10dp"
         android:text="0" />
 
-    <TextView
-        android:id="@+id/tv_question"
-        android:layout_width="231dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_height="70dp"
-        android:textStyle="bold"
-        android:layout_marginTop="30dp"
-        android:text="What is largest city and commercial capital of Sri Lanka?" />
+    <com.example.quizapp.quiz.CustomRecyclerView
+        android:id="@+id/horizontal_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="345dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/list_quiz_holder"/>
 
-    <Button
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center"
-        android:layout_width="280dp"
-        android:background="@drawable/quiz_btn_one"
-        android:layout_height="40dp"
-        android:text="One"/>
-    <Button
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:layout_width="280dp"
-        android:background="@drawable/quiz_btn_two"
-        android:layout_height="40dp"
-        android:text="Two"/>
-    <Button
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:layout_width="280dp"
-        android:background="@drawable/quiz_btn_three"
-        android:layout_height="40dp"
-        android:text="Three"/>
-    <Button
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:layout_width="280dp"
-        android:background="@drawable/quiz_btn_four"
-        android:layout_height="40dp"
-        android:text="Four"/>
     <Button
         android:id="@+id/btnSkip"
         android:layout_marginTop="124dp"

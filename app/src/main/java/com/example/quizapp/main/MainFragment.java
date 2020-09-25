@@ -19,13 +19,9 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.example.quizapp.MainActivity;
-import com.example.quizapp.QuizActivity;
+import com.example.quizapp.quiz.QuizActivity;
 import com.example.quizapp.R;
-
-import java.sql.ResultSet;
-
-import static android.app.Activity.RESULT_OK;
+import com.example.quizapp.seek_bar.SimpleSeekBarChangeListenner;
 
 public class MainFragment extends Fragment {
     private SeekBar seekBarr;
@@ -75,21 +71,14 @@ public class MainFragment extends Fragment {
     }
 
     private void onClick() {
-        seekBarr.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBarr.setOnSeekBarChangeListener(new SimpleSeekBarChangeListenner(){
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                super.onProgressChanged(seekBar, progress, fromUser);
                 mViewModel.mutableLiveData.setValue(progress);
             }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
         });
+
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

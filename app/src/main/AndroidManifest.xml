@@ -9,7 +9,7 @@
         android:roundIcon="@drawable/ic_brain_v2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Launcher">
-        <activity android:name=".QuizActivity"></activity>
+        <activity android:name=".quiz.QuizActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
