@@ -24,10 +24,4 @@ public class QuizViewModel extends ViewModel implements OnItemClickListener {
         answerAmownt.setValue(answerAmownt.getValue()+1);
     }
 
-//    public void onClickBtn(int positionQuestion,int positionAnswer){
-//        ModelQuiz modelQuiz = modelQuizMutableLiveData.getValue().get(positionQuestion);
-//
-//        if (modelQuiz.getListAnswer()[positionAnswer].equals(modelQuiz.getCorretAns())){
-//        }
-//    }
 }

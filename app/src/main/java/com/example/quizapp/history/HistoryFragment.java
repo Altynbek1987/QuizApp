@@ -1,5 +1,6 @@
 package com.example.quizapp.history;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -14,14 +15,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.quizapp.R;
+import com.example.quizapp.adapter.AdapterHistory;
 import com.example.quizapp.adapter.AdapterHistoryFragment;
+import com.example.quizapp.databinding.HistoryFragmentBinding;
+import com.example.quizapp.databinding.HistoryHolderBinding;
+import com.example.quizapp.model.HistoryModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HistoryFragment extends Fragment {
 
-    private RecyclerView recyclerView;
-    private AdapterHistoryFragment adapterHistoryFragment;
-
+    private AdapterHistory adapterHistory;
     private HistoryViewModel mViewModel;
+    HistoryFragmentBinding historyFragmentBinding;
+
 
     public static HistoryFragment newInstance() {
         return new HistoryFragment();
@@ -30,19 +38,25 @@ public class HistoryFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.history_fragment, container, false);
+        historyFragmentBinding = HistoryFragmentBinding.bind(inflater.inflate(R.layout.history_fragment, container, false));
+        return historyFragmentBinding.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
-        // TODO: Use the ViewModel
+        super.onActivityCreated(savedInstanceState);
+        adapterHistory = new AdapterHistory();
+        historyFragmentBinding.recyclerView.setAdapter(adapterHistory);
+        mViewModel.updateData();
+        mViewModel.mutableLiveData.observeForever(historyModels -> {
+            adapterHistory.setData(historyModels);
+        });
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.recyclerView);
+
     }
 }
