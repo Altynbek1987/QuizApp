@@ -7,6 +7,7 @@ import androidx.constraintlayout.motion.utils.MonotonicCurveFit;
 
 import com.example.quizapp.model.ModelCategory;
 import com.example.quizapp.model.ModelQuestions;
+import com.example.quizapp.model.ResultModel;
 
 import java.util.List;
 
@@ -26,15 +27,15 @@ public class OpentdbService {
             .build();
 QuizApi service = retrofit.create(QuizApi.class);
 
-public void getListQuestion(QuestionCallback callback){
-    Call<List<ModelQuestions>> call = service.getQuestion(50,24,"easy");
-    call.enqueue(new Callback<List<ModelQuestions>>() {
+public void getListQuestion(QuestionCallback callback, String difficulty, int category,int amount){
+    Call<ModelQuestions> call = service.getQuestion(amount,category,difficulty);
+    call.enqueue(new Callback<ModelQuestions>() {
         @Override
-        public void onResponse(Call<List<ModelQuestions>> call, Response<List<ModelQuestions>> response) {
+        public void onResponse(Call<ModelQuestions> call, Response<ModelQuestions> response) {
             if (response.isSuccessful()){
                 if (response.body() != null){
-                    callback.onSuccess(response.body());
-                    Log.e("ololo","onSuccess");
+                    callback.onSuccess(response.body().getResults());
+                    Log.e("ololo","getListQuestion");
                 }else {
                     Log.e("ololo", "response body is null");
                     callback.onFailure(new Exception());
@@ -43,7 +44,7 @@ public void getListQuestion(QuestionCallback callback){
         }
 
         @Override
-        public void onFailure(Call<List<ModelQuestions>> call, Throwable t) {
+        public void onFailure(Call<ModelQuestions> call, Throwable t) {
             Log.e("ololo", "Error");
             callback.onFailure(new Exception());
         }
@@ -71,7 +72,7 @@ public void getCategory(QuestionCallback callback){
 }
 public interface QuestionCallback{
 
-    void onSuccess(List<ModelQuestions> body);
+    void onSuccess(List<ResultModel> body);
 
     void onFailure(Exception e);
 
@@ -80,7 +81,7 @@ public interface QuestionCallback{
 
     public interface QuizApi{
         @GET("api.php")
-        Call<List<ModelQuestions>>getQuestion(
+        Call<ModelQuestions>getQuestion(
                 @Query("amount")int amount,
                 @Query("category")int category,
                 @Query("difficulty") String difficulty

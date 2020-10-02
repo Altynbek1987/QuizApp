@@ -12,7 +12,7 @@ public class ModelQuestions {
     private Integer responseCode;
     @SerializedName("results")
     @Expose
-    private List<Result> results = null;
+    private List<ResultModel> results = null;
 
     public Integer getResponseCode() {
         return responseCode;
@@ -22,11 +22,11 @@ public class ModelQuestions {
         this.responseCode = responseCode;
     }
 
-    public List<Result> getResults() {
+    public List<ResultModel> getResults() {
         return results;
     }
 
-    public void setResults(List<Result> results) {
+    public void setResults(List<ResultModel> results) {
         this.results = results;
     }
 

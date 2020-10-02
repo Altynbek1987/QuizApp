@@ -10,6 +10,7 @@ import com.example.quizapp.R;
 import com.example.quizapp.data.OpentdbService;
 import com.example.quizapp.model.ModelCategory;
 import com.example.quizapp.model.ModelQuestions;
+import com.example.quizapp.model.ResultModel;
 import com.example.quizapp.model.TriviaCategory;
 
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class MainViewModel extends ViewModel implements OpentdbService.QuestionC
     }
 
     @Override
-    public void onSuccess(List<ModelQuestions> body) {
+    public void onSuccess(List<ResultModel> body) {
 
     }
 

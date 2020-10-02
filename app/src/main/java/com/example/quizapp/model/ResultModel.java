@@ -5,26 +5,54 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Result {
+public class ResultModel {
 
     @SerializedName("category")
     @Expose
-    private String category;
+    private String category; //категория
     @SerializedName("type")
     @Expose
-    private String type;
+    private String type;  //тип
     @SerializedName("difficulty")
     @Expose
-    private String difficulty;
+    private String difficulty;  //трудность
     @SerializedName("question")
     @Expose
-    private String question;
+    private String question;  //вопрос
     @SerializedName("correct_answer")
     @Expose
-    private String correctAnswer;
+    private String correctAnswer;  //правильный ответ
     @SerializedName("incorrect_answers")
     @Expose
-    private List<String> incorrectAnswers = null;
+    private List<String> incorrectAnswers;  //неправильные ответы
+    private boolean isChoice;
+    private boolean isBind;
+
+    public boolean isBind() {
+        return isBind;
+    }
+
+    public void setBind(boolean bind) {
+        isBind = bind;
+    }
+
+    public int getUserChoice() {
+        return userChoice;
+    }
+
+    public void setUserChoice(int userChoice) {
+        this.userChoice = userChoice;
+    }
+
+    private int userChoice;
+
+    public boolean isChoice() {
+        return isChoice;
+    }
+
+    public void setChoice(boolean choice) {
+        isChoice = choice;
+    }
 
     public String getCategory() {
         return category;
@@ -74,4 +102,17 @@ public class Result {
         this.incorrectAnswers = incorrectAnswers;
     }
 
+    @Override
+    public String toString() {
+        return "ResultModel{" +
+                "category='" + category + '\'' +
+                ", type='" + type + '\'' +
+                ", difficulty='" + difficulty + '\'' +
+                ", question='" + question + '\'' +
+                ", correctAnswer='" + correctAnswer + '\'' +
+                ", incorrectAnswers=" + incorrectAnswers +
+                ", isChoice=" + isChoice +
+                ", userChoice=" + userChoice +
+                '}';
+    }
 }

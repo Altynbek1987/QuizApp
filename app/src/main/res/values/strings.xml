@@ -8,13 +8,13 @@
     <string name="category">Category</string>
     <string name="difficulty">Difficulty</string>
     <string name="start">Start</string>
+
     <style name="splashScreen">SplashScreen</style>
 
     <string-array name="Level">
-        <item>All</item>
-        <item>Easy</item>
-        <item>Normal</item>
-        <item>Hard</item>
+        <item>easy</item>
+        <item>medium</item>
+        <item>hard</item>
     </string-array>
     <string-array name="Category">
         <item>All</item>

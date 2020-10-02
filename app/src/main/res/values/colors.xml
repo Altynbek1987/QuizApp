@@ -10,6 +10,8 @@
     <color name="QuizBtnFour">#D2CFCF</color>
     <color name="QuizBtnSkip">#FF6581</color>
     <color name="White">#F4EEEE</color>
+    <color name="Finish">#4CE2A7</color>
+    <color name="Red">#F44336</color>
 
 
 </resources>

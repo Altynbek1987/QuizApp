@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private MainPagerAdapter adapter;
     private Toolbar toolbar;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);

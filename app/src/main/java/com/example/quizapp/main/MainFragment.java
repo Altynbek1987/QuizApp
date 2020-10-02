@@ -46,9 +46,11 @@ public class MainFragment extends Fragment {
     private Integer category;
     private String nameCategoryTitleQuestionActivity;
     MainFragmentBinding mainFragmentBinding;
+    private String difficul;
 
 
     private MainViewModel mViewModel;
+    private int amount;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -85,6 +87,19 @@ public class MainFragment extends Fragment {
         mViewModel.mutableLiveData.observeForever(integer -> {
             textView.setText(integer+"");
             seekBarr.setProgress(integer);
+            amount = integer;
+        });
+
+        spinnerDifficulty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                difficul = getResources().getStringArray(R.array.Level)[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
 
         mViewModel.mutableCategory.observeForever(modelCategory -> {
@@ -130,6 +145,8 @@ public class MainFragment extends Fragment {
                 Intent intent = new Intent(requireContext(), QuestionsActivity.class);
                 intent.putExtra(QuestionsActivity.KEY, category.intValue());
                 intent.putExtra(QuestionsActivity.KEYNAME,nameCategoryTitleQuestionActivity);
+                intent.putExtra(QuestionsActivity.KEYDIFFICULY,difficul);
+                intent.putExtra(QuestionsActivity.KEYAMOUNT,amount);
                 startActivityForResult(intent, MAIN_FRAGMENT_CODE);
 
             }
