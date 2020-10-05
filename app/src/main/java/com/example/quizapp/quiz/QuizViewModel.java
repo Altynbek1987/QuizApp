@@ -15,16 +15,22 @@ import com.example.quizapp.model.ResultModel;
 
 import java.util.List;
 
-public class QuizViewModel extends ViewModel implements  OpentdbService.QuestionCallback {
+public class QuizViewModel extends ViewModel implements  OpentdbService.QuestionCallback  {
     MutableLiveData<Integer> answerAmownt = new MutableLiveData<>();
     MutableLiveData<List<ResultModel>> mutableQuestions = new MutableLiveData<>();
-    MutableLiveData<ResultModel> backQuestion = new MutableLiveData<>();
-    ModelQuiz modelQuiz;
+    MutableLiveData<ResultModel> answerMutable = new MutableLiveData<>();
+
+    ResultModel resultModel;
     List<ModelQuestions> list;
+    int corAnswer;
 
 
     void updateQuestion(String difficulty,int category,int amount){
         App.opentdbService.getListQuestion(this, difficulty,category, amount);
+    }
+
+    void correctAnswerr(){
+       corAnswer++;
     }
 
     @Override

@@ -1,18 +1,16 @@
 package com.example.quizapp.quiz;
 
+import androidx.annotation.IntegerRes;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SnapHelper;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -22,29 +20,25 @@ import android.widget.TextView;
 import com.example.quizapp.R;
 import com.example.quizapp.adapter.AdapterQuestionsActivity;
 import com.example.quizapp.databinding.ActivityQuizBinding;
+import com.example.quizapp.interfac.OnAnswerClick;
 import com.example.quizapp.interfac.OnItemClickListener;
 import com.example.quizapp.model.ModelQuiz;
+import com.example.quizapp.model.ScoreModel;
 import com.example.quizapp.result.ResultActivity;
 
 import java.util.List;
 
-import static com.example.quizapp.adapter.AdapterQuestionsActivity.ViewHolder.CORRECT_ANSWER;
-
-public class QuestionsActivity extends AppCompatActivity{
+public class QuestionsActivity extends AppCompatActivity implements OnAnswerClick {
     public static final String KEYNAME = "keyName";
     public static final String KEYDIFFICULY = "keyDifficuly";
     public static final String KEYAMOUNT = "keyAmount";
-    private ProgressBar progressBar;
-    private RecyclerView horizontalRecyclerView;
     private AdapterQuestionsActivity horizontalAdapter;
-    private List<ModelQuiz> listHoriz;
-    private TextView textViewQuestion, tvSeekBar, tvCategory;
     public static final String KEY = "key";
-    private LinearLayout layout, layout1;
     private QuizViewModel quizViewModel;
-    private int amount;
     private int amountQuestions;
     private static int QUESTIONS_ACTIVITY_CODE = 10;
+    private String diff;
+    private ScoreModel scoreModel;
     ActivityQuizBinding activityQuizBinding;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -54,47 +48,47 @@ public class QuestionsActivity extends AppCompatActivity{
         setContentView(R.layout.activity_quiz);
         activityQuizBinding = DataBindingUtil.setContentView(this, R.layout.activity_quiz);
         quizViewModel = ViewModelProviders.of(this).get(QuizViewModel.class);
-        tvCategory = findViewById(R.id.tv_category);
-        progressBar = findViewById(R.id.progress_bar);
-        tvSeekBar = findViewById(R.id.tv_seek_bar);
-        layout = findViewById(R.id.layout_variant);
-        layout1 = findViewById(R.id.layout_true_false);
-        textViewQuestion = findViewById(R.id.tv_question);
-        String diff = KEYDIFFICULY;
-        quizViewModel.answerAmownt.observeForever(new Observer<Integer>() {
+        quizViewModel.answerAmownt.observeForever(new Observer<Integer>() { //Сначала это вызываем потом вызываем quizViewModel.updateQuestion("easy", category, amount);
             @Override
             public void onChanged(Integer integer) {
-                horizontalRecyclerView.smoothScrollToPosition(integer);
+                activityQuizBinding.horizontalRecyclerView.smoothScrollToPosition(integer);
             }
         });
+
 //        SnapHelper snapHelper = new PagerSnapHelper();
 //        snapHelper.attachToRecyclerView(activityQuizBinding.horizontalRecyclerView);
 
         Intent intent = getIntent();
         int category = intent.getIntExtra(KEY, 9);
-        tvCategory.setText(intent.getStringExtra(KEYNAME));
-        tvSeekBar.setText(intent.getStringExtra(KEYDIFFICULY));
+        activityQuizBinding.tvCategory.setText(intent.getStringExtra(KEYNAME));
+        activityQuizBinding.tvProgressBar.setText(intent.getStringExtra(KEYDIFFICULY));
         int amount = intent.getIntExtra(KEYAMOUNT, 10);
+
+
+
         activityQuizBinding.progressBar.setMax(amount);
         activityQuizBinding.progressBar.setProgress(0);
         horizontalAdapter = new AdapterQuestionsActivity();
+        horizontalAdapter.setListener(this);
         activityQuizBinding.horizontalRecyclerView.setAdapter(horizontalAdapter);
         quizViewModel.mutableQuestions.observeForever(modelQuestions -> {
             horizontalAdapter.addData(modelQuestions);
             amountQuestions = modelQuestions.size();
         });
-        quizViewModel.updateQuestion("easy", category, amount);
+        quizViewModel.updateQuestion("easy", category, amount); //Вызываем после quizViewModel.answerAmownt.observeForever(new Observer<Integer>());
+
         horizontalAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Log.e("ololo", "onItemClick: " + position + "  " + (amountQuestions - 1));
                 if (position >= amountQuestions - 1) {
+                    diff =intent.getStringExtra(KEYDIFFICULY);
                     Log.e("ololo", "onIhhhhhhhhhhhhhhhhhhhhhhhhhhhtemClick: " + position + "  " + (amountQuestions - 1));
                     Intent intent = new Intent(QuestionsActivity.this,ResultActivity.class);
-                    intent.putExtra(ResultActivity.KEYDIF,diff);
+                    intent.putExtra(ResultActivity.KEYDIFFICULY,diff);
+                    intent.putExtra(ResultActivity.KEYAMOUNT,amount);
+                    intent.putExtra(ResultActivity.KEYRESULTANSWER,quizViewModel.corAnswer);
                     startActivityForResult(intent, QUESTIONS_ACTIVITY_CODE);
-                    startActivity(new Intent(QuestionsActivity.this, ResultActivity.class));
-
                     finish();
                 } else {
                     activityQuizBinding.progressBar.setProgress(activityQuizBinding.progressBar.getProgress() + 1);
@@ -102,6 +96,7 @@ public class QuestionsActivity extends AppCompatActivity{
                 }
 
             }
+
         });
         activityQuizBinding.backQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,5 +115,20 @@ public class QuestionsActivity extends AppCompatActivity{
                 activityQuizBinding.horizontalRecyclerView.scrollToPosition(activityQuizBinding.progressBar.getProgress());
             }
         });
+
+
+    }
+
+    @Override
+    public void onAnswer(View view, int positionQuestion, int positionAnswer) {
+
+    }
+
+    @Override
+    public void correctAnswer(boolean b) {
+        if (b) {
+            quizViewModel.correctAnswerr();
+        }
+
     }
 }

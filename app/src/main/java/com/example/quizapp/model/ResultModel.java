@@ -28,6 +28,16 @@ public class ResultModel {
     private boolean isChoice;
     private boolean isBind;
 
+    int rightAnswer;
+
+    public int getRightAnswer() {
+        return rightAnswer;
+    }
+
+    public void setRightAnswer(int rightAnswer) {
+        this.rightAnswer = rightAnswer;
+    }
+
     public boolean isBind() {
         return isBind;
     }

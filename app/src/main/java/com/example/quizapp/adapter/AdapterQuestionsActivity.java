@@ -16,9 +16,11 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.quizapp.R;
 import com.example.quizapp.databinding.ListQuizHolderBinding;
+import com.example.quizapp.generated.callback.OnClickListener;
 import com.example.quizapp.interfac.OnAnswerClick;
 import com.example.quizapp.interfac.OnItemClickListener;
 import com.example.quizapp.model.ResultModel;
+import com.example.quizapp.model.ScoreModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,7 +32,11 @@ import static android.content.ContentValues.TAG;
 public class AdapterQuestionsActivity extends RecyclerView.Adapter<AdapterQuestionsActivity.ViewHolder> {
     private OnItemClickListener onItemClickListener;
     private List<ResultModel> listQues = new ArrayList<>();
+    OnAnswerClick listener;
 
+    public void setListener(OnAnswerClick listener) {
+        this.listener = listener;
+    }
 
     public void setListQues(List<ResultModel> listQues) {
         this.listQues = listQues;
@@ -70,6 +76,7 @@ public class AdapterQuestionsActivity extends RecyclerView.Adapter<AdapterQuesti
         public static final int CORRECT_ANSWER = 1;
         public static final int INCORRECT_ANSWER = 2;
         private static final int WRONG_ANSWER = 3;
+        private ScoreModel scoreModel;
 
         private ListQuizHolderBinding listQuizHolderBinding;
 
@@ -182,19 +189,35 @@ public class AdapterQuestionsActivity extends RecyclerView.Adapter<AdapterQuesti
             if (userAnswer.equals(quizModel.getCorrectAnswer())) {
                 if (getAdapterPosition() >= listQues.size()-1) {
                     button.setBackgroundResource(R.drawable.back_answer);
+                    correctAnswer(true);
+                    YoYo.with(Techniques.Tada)
+                            .duration(700)
+                            .repeat(5)
+                            .playOn(view);
                     position = CORRECT_ANSWER;
+                    listener.correctAnswer(true);
+
                     Log.e(TAG, "ansverOk: " + quizModel.getCorrectAnswer());
                 } else {
                     button.setBackgroundResource(R.drawable.back_answer);
+                    YoYo.with(Techniques.Tada)
+                            .duration(700)
+                            .repeat(5)
+                            .playOn(view);
+                    listener.correctAnswer(true);
+
                 }
             } else {
                 if (getAdapterPosition() >= listQues.size()-1) {
                     button.setBackgroundResource(R.drawable.back_incoret_answer);
+                    correctAnswer(false);
                     YoYo.with(Techniques.Tada)
                             .duration(700)
                             .repeat(5)
                             .playOn(view);
                     position = INCORRECT_ANSWER;
+                    listener.correctAnswer(false);
+
                 } else {
                     button.setBackgroundResource(R.drawable.back_incoret_answer);
                     YoYo.with(Techniques.Tada)
@@ -202,6 +225,8 @@ public class AdapterQuestionsActivity extends RecyclerView.Adapter<AdapterQuesti
                             .repeat(5)
                             .playOn(view);
                     position = WRONG_ANSWER;
+                    listener.correctAnswer(false);
+
                 }
                 Log.e(TAG, "ansverOk: " + quizModel.getIncorrectAnswers());
             }
@@ -215,5 +240,13 @@ public class AdapterQuestionsActivity extends RecyclerView.Adapter<AdapterQuesti
                 }
             }.start();
         }
+
+        @Override
+        public void correctAnswer(boolean b) {
+
+
+        }
+
+
     }
 }
