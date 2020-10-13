@@ -49,6 +49,11 @@ public class AdapterHistory extends RecyclerView.Adapter<AdapterHistory.HistoryV
         }
         public void bind(HistoryModel historyModel){
             historyHolderBinding.tvCategory.setText(historyModel.getCategory());
+            historyHolderBinding.tvAmountQuiz.setText(historyModel.getAmount_quiz());
+            historyHolderBinding.tvDifficulty.setText(historyModel.getDifficulty());
+            historyHolderBinding.tvAnswers.setText(historyModel.getCorrectAns());
+
+
         }
     }
 }

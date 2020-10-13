@@ -1,7 +1,11 @@
 
 package com.example.quizapp.model;
 
+import androidx.lifecycle.MutableLiveData;
+
 import java.util.List;
+import java.util.Map;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -29,6 +33,12 @@ public class ResultModel {
     private boolean isBind;
 
     int rightAnswer;
+
+    MutableLiveData<Boolean> SkipClicked = new MutableLiveData<>(false);
+
+    public MutableLiveData<Boolean> getSkipClicked() {
+        return SkipClicked;
+    }
 
     public int getRightAnswer() {
         return rightAnswer;
@@ -125,4 +135,5 @@ public class ResultModel {
                 ", userChoice=" + userChoice +
                 '}';
     }
+
 }

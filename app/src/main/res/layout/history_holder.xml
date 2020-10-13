@@ -50,7 +50,16 @@
                     android:id="@+id/tv_answers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="8/10" />
+                    android:text="8" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="/" />
+                <TextView
+                    android:id="@+id/tv_amount_quiz"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="10" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"

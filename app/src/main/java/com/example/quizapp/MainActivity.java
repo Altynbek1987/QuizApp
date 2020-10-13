@@ -2,18 +2,13 @@ package com.example.quizapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.SeekBar;
-import android.widget.TextView;
 
 import com.example.quizapp.adapter.MainPagerAdapter;
-import com.example.quizapp.main.MainFragment;
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

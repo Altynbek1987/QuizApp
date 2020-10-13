@@ -1,23 +1,13 @@
-package com.example.quizapp.main;
-
-import android.widget.ArrayAdapter;
+package com.example.quizapp.ui.ui.main;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.quizapp.App;
-import com.example.quizapp.R;
-import com.example.quizapp.data.OpentdbService;
+import com.example.quizapp.interfac.IQuizApiCallBack;
 import com.example.quizapp.model.ModelCategory;
-import com.example.quizapp.model.ModelQuestions;
-import com.example.quizapp.model.ResultModel;
-import com.example.quizapp.model.TriviaCategory;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class MainViewModel extends ViewModel implements OpentdbService.QuestionCallback {
-    private ModelCategory modelCategory;
+public class MainViewModel extends ViewModel implements IQuizApiCallBack.QuestionCallback {
     MutableLiveData<Integer> mutableLiveData = new MutableLiveData<>();
     MutableLiveData<ModelCategory> mutableCategory = new MutableLiveData<>();
 
@@ -39,22 +29,17 @@ public class MainViewModel extends ViewModel implements OpentdbService.QuestionC
     }
 
     void updateCategory(){
-        App.opentdbService.getCategory(this);
+        App.getInstance().getRepository().getCategories(this);
     }
 
     @Override
-    public void onSuccess(List<ResultModel> body) {
-
-    }
-
-    @Override
-    public void onFailure(Exception e) {
+    public void onSuccess(ModelCategory category) {
+        mutableCategory.setValue(category);
 
     }
 
     @Override
-    public void onResponse(ModelCategory question) {
-        mutableCategory.setValue(question);
+    public void onFailure(Throwable e) {
 
     }
 

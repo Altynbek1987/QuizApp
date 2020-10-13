@@ -1,11 +1,11 @@
-package com.example.quizapp.data;
+package com.example.quizapp.data.locally;
 
 import com.example.quizapp.model.ModelQuiz;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Server {
+public class LocallyServer {
 //    public static List<ModelQuiz> listQuiz = new ArrayList<>();
 //    public static ModelQuiz getQuestionPosition(int position){
 //        return listQuiz.get(position);

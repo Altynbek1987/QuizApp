@@ -16,7 +16,6 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.quizapp.R;
 import com.example.quizapp.databinding.ListQuizHolderBinding;
-import com.example.quizapp.generated.callback.OnClickListener;
 import com.example.quizapp.interfac.OnAnswerClick;
 import com.example.quizapp.interfac.OnItemClickListener;
 import com.example.quizapp.model.ResultModel;
@@ -53,8 +52,6 @@ public class AdapterQuestionsActivity extends RecyclerView.Adapter<AdapterQuesti
         return new ViewHolder(ListQuizHolderBinding.bind(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_quiz_holder, parent, false)));
     }
 
-
-    //@RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.onBind(listQues.get(position));
@@ -86,7 +83,6 @@ public class AdapterQuestionsActivity extends RecyclerView.Adapter<AdapterQuesti
             binding.setListener(this);
         }
 
-        //@RequiresApi(api = Build.VERSION_CODES.M)
         public void onBind(ResultModel resultModel) {
 
             listQuizHolderBinding.btnone.setBackgroundResource(R.color.White);
@@ -176,7 +172,6 @@ public class AdapterQuestionsActivity extends RecyclerView.Adapter<AdapterQuesti
             listQuizHolderBinding.btnFalse.setClickable(b);
         }
 
-        //@RequiresApi(api = Build.VERSION_CODES.M)
         @Override
         public void onAnswer(View view, int positionQuestion, int positionAnswer) {
             listQuizHolderBinding.getModel().setChoice(true);

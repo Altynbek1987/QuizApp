@@ -38,6 +38,7 @@ public class QuestionsActivity extends AppCompatActivity implements OnAnswerClic
     private int amountQuestions;
     private static int QUESTIONS_ACTIVITY_CODE = 10;
     private String diff;
+    private String categ;
     private ScoreModel scoreModel;
     ActivityQuizBinding activityQuizBinding;
 
@@ -60,11 +61,11 @@ public class QuestionsActivity extends AppCompatActivity implements OnAnswerClic
 
         Intent intent = getIntent();
         int category = intent.getIntExtra(KEY, 9);
-        activityQuizBinding.tvCategory.setText(intent.getStringExtra(KEYNAME));
+        categ=intent.getStringExtra(KEYNAME);
+        activityQuizBinding.tvCategory.setText(categ);
+        Log.e("log"," "+categ);
         activityQuizBinding.tvProgressBar.setText(intent.getStringExtra(KEYDIFFICULY));
         int amount = intent.getIntExtra(KEYAMOUNT, 10);
-
-
 
         activityQuizBinding.progressBar.setMax(amount);
         activityQuizBinding.progressBar.setProgress(0);
@@ -83,18 +84,18 @@ public class QuestionsActivity extends AppCompatActivity implements OnAnswerClic
                 Log.e("ololo", "onItemClick: " + position + "  " + (amountQuestions - 1));
                 if (position >= amountQuestions - 1) {
                     diff =intent.getStringExtra(KEYDIFFICULY);
-                    Log.e("ololo", "onIhhhhhhhhhhhhhhhhhhhhhhhhhhhtemClick: " + position + "  " + (amountQuestions - 1));
+                    Log.e("ololo"," "+diff+amount+quizViewModel.corAnswer+categ + position + "  " + (amountQuestions - 1));
                     Intent intent = new Intent(QuestionsActivity.this,ResultActivity.class);
                     intent.putExtra(ResultActivity.KEYDIFFICULY,diff);
                     intent.putExtra(ResultActivity.KEYAMOUNT,amount);
                     intent.putExtra(ResultActivity.KEYRESULTANSWER,quizViewModel.corAnswer);
+                    intent.putExtra(ResultActivity.KEYNAME,categ);
                     startActivityForResult(intent, QUESTIONS_ACTIVITY_CODE);
                     finish();
                 } else {
                     activityQuizBinding.progressBar.setProgress(activityQuizBinding.progressBar.getProgress() + 1);
                     activityQuizBinding.horizontalRecyclerView.scrollToPosition(activityQuizBinding.progressBar.getProgress());
                 }
-
             }
 
         });
@@ -115,8 +116,6 @@ public class QuestionsActivity extends AppCompatActivity implements OnAnswerClic
                 activityQuizBinding.horizontalRecyclerView.scrollToPosition(activityQuizBinding.progressBar.getProgress());
             }
         });
-
-
     }
 
     @Override
@@ -129,6 +128,6 @@ public class QuestionsActivity extends AppCompatActivity implements OnAnswerClic
         if (b) {
             quizViewModel.correctAnswerr();
         }
-
     }
+
 }

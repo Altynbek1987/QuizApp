@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".history.HistoryFragment">
+    tools:context=".ui.ui.history.HistoryFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

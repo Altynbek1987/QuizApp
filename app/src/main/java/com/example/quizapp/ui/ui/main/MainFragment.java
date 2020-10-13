@@ -1,6 +1,5 @@
-package com.example.quizapp.main;
+package com.example.quizapp.ui.ui.main;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
@@ -23,11 +22,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.quizapp.App;
-import com.example.quizapp.data.OpentdbService;
 import com.example.quizapp.databinding.MainFragmentBinding;
-import com.example.quizapp.model.ModelCategory;
-import com.example.quizapp.model.ModelQuestions;
 import com.example.quizapp.model.TriviaCategory;
 import com.example.quizapp.quiz.QuestionsActivity;
 import com.example.quizapp.R;

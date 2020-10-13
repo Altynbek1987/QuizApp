@@ -1,4 +1,4 @@
-package com.example.quizapp.history;
+package com.example.quizapp.ui.ui.history;
 
 import androidx.lifecycle.ViewModelProviders;
 
@@ -40,7 +40,7 @@ public class HistoryFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         adapterHistory = new AdapterHistory();
         historyFragmentBinding.recyclerView.setAdapter(adapterHistory);
-        mViewModel.updateData();
+       // mViewModel.updateData();
         mViewModel.mutableLiveData.observeForever(historyModels -> {
             adapterHistory.setData(historyModels);
         });
