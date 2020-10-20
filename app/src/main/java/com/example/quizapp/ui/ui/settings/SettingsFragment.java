@@ -8,13 +8,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
+import com.example.quizapp.App;
 import com.example.quizapp.R;
 
 public class SettingsFragment extends Fragment {
+
+    private LinearLayout layout;
 
     private SettingsViewModel mViewModel;
 
@@ -35,4 +41,18 @@ public class SettingsFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        layout = view.findViewById(R.id.linear_clear);
+
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("ololo","SettingsFragmentOnClick"+ layout);
+                App.getInstance().getDatabase().historyDao().deleteAll();
+            }
+        });
+
+    }
 }

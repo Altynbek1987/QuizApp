@@ -112,7 +112,7 @@ public class MainFragment extends Fragment {
                     category = modelCategory.getTriviaCategories().get(position).getId();
                     nameCategoryTitleQuestionActivity = modelCategory.getTriviaCategories().get(position).getName();
 
-                    Toast.makeText(requireContext(), "Selected", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(requireContext(), "Selected", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override

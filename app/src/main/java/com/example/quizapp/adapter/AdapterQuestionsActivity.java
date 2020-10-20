@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -32,6 +33,7 @@ public class AdapterQuestionsActivity extends RecyclerView.Adapter<AdapterQuesti
     private OnItemClickListener onItemClickListener;
     private List<ResultModel> listQues = new ArrayList<>();
     OnAnswerClick listener;
+
 
     public void setListener(OnAnswerClick listener) {
         this.listener = listener;
@@ -74,6 +76,7 @@ public class AdapterQuestionsActivity extends RecyclerView.Adapter<AdapterQuesti
         public static final int INCORRECT_ANSWER = 2;
         private static final int WRONG_ANSWER = 3;
         private ScoreModel scoreModel;
+        ResultModel model;
 
         private ListQuizHolderBinding listQuizHolderBinding;
 
@@ -84,7 +87,9 @@ public class AdapterQuestionsActivity extends RecyclerView.Adapter<AdapterQuesti
         }
 
         public void onBind(ResultModel resultModel) {
-
+            //this.model=resultModel;
+            //setClickable(!model.getSkipClicked().getValue()); //Скиптики
+           // observeSkipClick(); // Скиптики
             listQuizHolderBinding.btnone.setBackgroundResource(R.color.White);
             listQuizHolderBinding.btntwo.setBackgroundResource(R.color.White);
             listQuizHolderBinding.btnthree.setBackgroundResource(R.color.White);
@@ -174,6 +179,7 @@ public class AdapterQuestionsActivity extends RecyclerView.Adapter<AdapterQuesti
 
         @Override
         public void onAnswer(View view, int positionQuestion, int positionAnswer) {
+
             listQuizHolderBinding.getModel().setChoice(true);
             listQuizHolderBinding.getModel().setUserChoice(positionAnswer);
             setClickable(false);
@@ -238,9 +244,9 @@ public class AdapterQuestionsActivity extends RecyclerView.Adapter<AdapterQuesti
 
         @Override
         public void correctAnswer(boolean b) {
-
-
         }
+
+
 
 
     }

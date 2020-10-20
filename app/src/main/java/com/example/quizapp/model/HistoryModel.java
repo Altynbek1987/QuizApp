@@ -1,34 +1,47 @@
 package com.example.quizapp.model;
 
+import java.util.Date;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.example.quizapp.room.converters.DateConverter;
+import com.example.quizapp.room.converters.QuestionConverter;
+
+import java.util.ArrayList;
 
 @Entity
-
 public class HistoryModel {
     @PrimaryKey(autoGenerate = true)
-    private long id;
+    private int id;
+    @ColumnInfo(name = "category")
     private String category;
+    @ColumnInfo(name = "difficulty")
     private String difficulty;
+    @ColumnInfo(name = "correctAns")
     private int correctAns;
-    private String data;
+    @ColumnInfo(name = "amount_quiz")
     private int amount_quiz;
+    @TypeConverters({QuestionConverter.class})
+    private ArrayList<ResultModel> resultModels;
+    @TypeConverters({DateConverter.class})
+    private Date date;
 
-
-    public HistoryModel(long id, String category, String difficulty, int correctAns, String data, int amount_quiz) {
-        this.id = id;
+    public HistoryModel(String category, String difficulty, int correctAns, int amount_quiz, ArrayList<ResultModel> resultModels, Date date) {
         this.category = category;
         this.difficulty = difficulty;
         this.correctAns = correctAns;
-        this.data = data;
         this.amount_quiz = amount_quiz;
+        this.resultModels = resultModels;
+        this.date = date;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -56,14 +69,6 @@ public class HistoryModel {
         this.correctAns = correctAns;
     }
 
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
-
     public int getAmount_quiz() {
         return amount_quiz;
     }
@@ -72,15 +77,32 @@ public class HistoryModel {
         this.amount_quiz = amount_quiz;
     }
 
-    @Override
-    public String toString() {
-        return "HistoryModel{" +
-                "id=" + id +
-                ", category='" + category + '\'' +
-                ", difficulty='" + difficulty + '\'' +
-                ", correctAns=" + correctAns +
-                ", data='" + data + '\'' +
-                ", amount_quiz=" + amount_quiz +
-                '}';
+    public ArrayList<ResultModel> getResultModels() {
+        return resultModels;
     }
+
+    public void setResultModels(ArrayList<ResultModel> resultModels) {
+        this.resultModels = resultModels;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "HistoryModel{" +
+//                "id=" + id +
+//                ", category='" + category + '\'' +
+//                ", difficulty='" + difficulty + '\'' +
+//                ", correctAns=" + correctAns +
+//                ", amount_quiz=" + amount_quiz +
+//                ", resultModels=" + resultModels +
+//                ", date=" + date +
+//                '}';
+//    }
 }

@@ -2,20 +2,35 @@ package com.example.quizapp.result;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.quizapp.App;
+import com.example.quizapp.MainActivity;
 import com.example.quizapp.R;
 import com.example.quizapp.databinding.ActivityResultBinding;
 import com.example.quizapp.interfac.OnItemClickListener;
 import com.example.quizapp.model.HistoryModel;
+import com.example.quizapp.model.ModelQuestions;
+import com.example.quizapp.model.ResultModel;
+import com.example.quizapp.quiz.QuestionsActivity;
+import com.example.quizapp.ui.ui.main.MainFragment;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public class ResultActivity extends AppCompatActivity {
+    private ResultViewModel resultViewModel;
     public static final String KEYRESULTANSWER = "keyResultAnswer";
     public static final String KEYNAME = "keyName";
     public static final String KEY = "key";
@@ -24,8 +39,11 @@ public class ResultActivity extends AppCompatActivity {
     public static final String KEYAMOUNT = "keyAmount";
     private int amount;
     private int correct;
+    private static int RESULT_ACTIVITY_CODE = 12;
     private String diff;
-   private HistoryModel historyModel;
+    private String category;
+    private HistoryModel historyModel;
+
 
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
@@ -40,6 +58,7 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         activityResultBinding = DataBindingUtil.setContentView(this, R.layout.activity_result);
+        resultViewModel = ViewModelProviders.of(this).get(ResultViewModel.class);
 
         Intent intent = getIntent();
         diff = intent.getStringExtra(KEYDIFFICULY);
@@ -48,27 +67,41 @@ public class ResultActivity extends AppCompatActivity {
         activityResultBinding.tvTotalQuiz.setText(String.valueOf(amount)); //Количество вопросов
         correct = intent.getIntExtra(KEYRESULTANSWER,10);
         activityResultBinding.tvCorrectAnswer.setText(String.valueOf(correct));//Правильные ответы
+        category = intent.getStringExtra(KEYNAME);
+        activityResultBinding.tvCategory.setText(category);
 
-        activityResultBinding.tvCategory.setText(intent.getStringExtra(KEYNAME));
+        historyModel=new HistoryModel(category, diff, correct, amount, new ArrayList<>(), Calendar.getInstance().getTime());
 
         int sto = 100;
         int result = sto*correct;
         int percent = result/amount;
         activityResultBinding.tvResult.setText(String.valueOf(percent));
+        resultViewModel.resultActivity.observeForever(resultModels -> {
 
-        activityResultBinding.btnFinish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveRoom();
-                App.getInstance().getDatabase().historyDao().insert(historyModel);
-            }
         });
+
+
+        activityResultBinding.btnFinish.setOnClickListener(v -> {
+            resultViewModel.saveResult(historyModel);
+            Toast.makeText(ResultActivity.this, diff+correct, Toast.LENGTH_LONG).show();
+            Intent intent1 = new Intent(ResultActivity.this, MainActivity.class);
+            startActivity(intent1);
+            finish();
+
+        });
+
 
     }
     public void saveRoom(){
         //Не работает
-        historyModel.setCorrectAns(correct);
-        historyModel.setAmount_quiz(amount);
-        historyModel.setCategory(diff);
+//        historyModel.setCorrectAns(correct);
+//        historyModel.setAmount_quiz(amount);
+//        historyModel.setCategory(diff);
+    }
+
+    @Override
+    public void onBackPressed() {
+        resultViewModel.saveResult(historyModel);
+        super.onBackPressed();
     }
 }

@@ -34,11 +34,7 @@ public class ResultModel {
 
     int rightAnswer;
 
-    MutableLiveData<Boolean> SkipClicked = new MutableLiveData<>(false);
 
-    public MutableLiveData<Boolean> getSkipClicked() {
-        return SkipClicked;
-    }
 
     public int getRightAnswer() {
         return rightAnswer;

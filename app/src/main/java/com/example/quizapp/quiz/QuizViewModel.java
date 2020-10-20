@@ -1,33 +1,31 @@
 package com.example.quizapp.quiz;
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.quizapp.App;
-import com.example.quizapp.R;
-import com.example.quizapp.data.service.OpentdbService;
 import com.example.quizapp.interfac.IQuizApiCallBack;
-import com.example.quizapp.model.ModelCategory;
+import com.example.quizapp.model.HistoryModel;
 import com.example.quizapp.model.ModelQuestions;
 import com.example.quizapp.model.ResultModel;
 
 import java.util.List;
-import java.util.Objects;
 
 public class QuizViewModel extends ViewModel implements IQuizApiCallBack.ListQuestion {
     MutableLiveData<Integer> answerAmownt = new MutableLiveData<>(0);
     MutableLiveData<List<ResultModel>> mutableQuestions = new MutableLiveData<>();
-    MutableLiveData<ResultModel> skipMutable = new MutableLiveData<>();
+    MutableLiveData<Integer> positionAnswer = new MutableLiveData<>();
+    MutableLiveData<List<ResultModel>> resultQuiz = new MutableLiveData<>();
+
 
     ResultModel resultModel;
     List<ModelQuestions> list;
+    HistoryModel historyModel;
     int corAnswer;
-
     @Override
     public void onSuccess(ModelQuestions modelQuestions) {
         mutableQuestions.setValue(modelQuestions.getResults());
+
     }
 
     @Override
@@ -41,5 +39,20 @@ public class QuizViewModel extends ViewModel implements IQuizApiCallBack.ListQue
     void correctAnswerr(){
        corAnswer++;
     }
+    public void questionList(){
+    }
+
+    void skip(){
+        positionAnswer.setValue(positionAnswer.getValue() + 1);
+
+    }
+    void btnBack(){
+        positionAnswer.setValue(positionAnswer.getValue() - 1);
+    }
+
+//    public void clickSkip(){ //Скиптики
+//        mutableQuestions.getValue().get(answerAmownt.getValue()).getSkipClicked().setValue(true);
+//        answerAmownt.setValue(answerAmownt.getValue()+1);
+//    }
 
 }

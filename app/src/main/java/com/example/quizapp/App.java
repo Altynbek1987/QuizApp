@@ -5,6 +5,8 @@ import android.app.Application;
 import androidx.room.Room;
 
 import com.example.quizapp.data.Repository;
+import com.example.quizapp.data.locally.HistoryStorage;
+import com.example.quizapp.data.locally.IHistoryStorage;
 import com.example.quizapp.data.service.IQuizApiClient;
 import com.example.quizapp.data.service.OpentdbService;
 import com.example.quizapp.room.AppDatabase;
@@ -13,8 +15,9 @@ public class App extends Application {
     //public static OpentdbService opentdbService;
     private static App instance;
     private IQuizApiClient quizApiClient;
+    private IHistoryStorage historyStorage;
     private Repository repository;
-    private AppDatabase database;
+    public AppDatabase database;
 
 
     @Override
@@ -23,7 +26,8 @@ public class App extends Application {
         //opentdbService = new OpentdbService();
         instance = this;
        quizApiClient = new OpentdbService();
-       repository = new Repository(quizApiClient);
+       historyStorage = new HistoryStorage();
+       repository = new Repository(quizApiClient, historyStorage);
        database = Room.databaseBuilder(this,AppDatabase.class,"my_data_base")
                .allowMainThreadQueries()
                .fallbackToDestructiveMigration()
