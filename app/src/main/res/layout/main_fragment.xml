@@ -7,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="?attr/backgroundColor"
     android:orientation="vertical"
     tools:context=".ui.ui.main.MainFragment">
 
@@ -39,6 +39,7 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="20dp"
                 android:gravity="center"
+                android:textColor="?attr/textColor"
                 android:text="@string/questions_amount" />
 
             <TextView
@@ -46,6 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                android:padding="10dp"
+                android:textColor="?attr/textColor"
                 android:layout_weight="2.5"
                 android:text="0" />
         </LinearLayout>
@@ -93,6 +95,7 @@
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="?attr/textColor"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="5dp"
         android:text="@string/category" />
@@ -123,6 +126,7 @@
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="?attr/textColor"
         android:layout_marginBottom="5dp"
         android:text="@string/difficulty" />
 
@@ -151,11 +155,11 @@
         android:id="@+id/start_game"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:textColor="?attr/textColor"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:background="@drawable/button"
-        android:text="@string/start"
-        android:textColor="@android:color/white" />
+        android:text="@string/start" />
 
 </LinearLayout>
 </layout>

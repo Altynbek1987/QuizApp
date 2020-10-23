@@ -4,13 +4,11 @@ import androidx.lifecycle.LiveData;
 
 import com.example.quizapp.data.locally.IHistoryStorage;
 import com.example.quizapp.data.service.IQuizApiClient;
-import com.example.quizapp.interfac.IMainCallBack;
 import com.example.quizapp.interfac.IQuizApiCallBack;
 import com.example.quizapp.model.HistoryModel;
 import com.example.quizapp.model.ResultModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Repository implements IQuizApiClient, IHistoryStorage {
     IQuizApiClient quizApiClient;

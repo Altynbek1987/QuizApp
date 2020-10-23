@@ -179,7 +179,6 @@ public class AdapterQuestionsActivity extends RecyclerView.Adapter<AdapterQuesti
 
         @Override
         public void onAnswer(View view, int positionQuestion, int positionAnswer) {
-
             listQuizHolderBinding.getModel().setChoice(true);
             listQuizHolderBinding.getModel().setUserChoice(positionAnswer);
             setClickable(false);

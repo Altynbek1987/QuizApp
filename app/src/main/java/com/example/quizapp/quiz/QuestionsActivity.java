@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.quizapp.App;
 import com.example.quizapp.R;
 import com.example.quizapp.adapter.AdapterQuestionsActivity;
 import com.example.quizapp.databinding.ActivityQuizBinding;
@@ -35,8 +36,10 @@ public class QuestionsActivity extends AppCompatActivity implements OnAnswerClic
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(App.getInstance().getPreferences().getTheme(R.style.AppTheme));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
         activityQuizBinding = DataBindingUtil.setContentView(this, R.layout.activity_quiz);
         quizViewModel = ViewModelProviders.of(this).get(QuizViewModel.class);
         //Сначала это вызываем потом вызываем quizViewModel.updateQuestion("easy", category, amount);
@@ -64,10 +67,6 @@ public class QuestionsActivity extends AppCompatActivity implements OnAnswerClic
             amountQuestions = modelQuestions.size();
         });
 
-        quizViewModel.positionAnswer.observeForever(integer -> {
-            activityQuizBinding.progressBar.setProgress(integer);
-            activityQuizBinding.horizontalRecyclerView.scrollToPosition(integer);
-        });
         quizViewModel.updateQuestion("easy", category, amount); //Вызываем после quizViewModel.answerAmownt.observeForever(new Observer<Integer>());
 
         horizontalAdapter.setOnItemClickListener(position -> {
@@ -87,14 +86,16 @@ public class QuestionsActivity extends AppCompatActivity implements OnAnswerClic
                 activityQuizBinding.horizontalRecyclerView.scrollToPosition(activityQuizBinding.progressBar.getProgress());
             }
         });
+        quizViewModel.positionAnswer.observeForever(integer -> {
+            activityQuizBinding.progressBar.setProgress(integer);
+            activityQuizBinding.horizontalRecyclerView.scrollToPosition(integer);
+            horizontalAdapter.notifyDataSetChanged();
+        });
         activityQuizBinding.backQuestion.setOnClickListener(v -> {
             Log.e("ololo", "onClick:backQuestion ");
            quizViewModel.btnBack();
         });
-        activityQuizBinding.btnSkip.setOnClickListener(v -> {
-            quizViewModel.skip();
-            horizontalAdapter.notifyDataSetChanged();
-        });
+        activityQuizBinding.btnSkip.setOnClickListener(v -> quizViewModel.skip());
     }
 
     @Override

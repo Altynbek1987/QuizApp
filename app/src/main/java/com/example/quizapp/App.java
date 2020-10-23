@@ -9,15 +9,17 @@ import com.example.quizapp.data.locally.HistoryStorage;
 import com.example.quizapp.data.locally.IHistoryStorage;
 import com.example.quizapp.data.service.IQuizApiClient;
 import com.example.quizapp.data.service.OpentdbService;
+import com.example.quizapp.pref.Preferences;
 import com.example.quizapp.room.AppDatabase;
 
 public class App extends Application {
-    //public static OpentdbService opentdbService;
+
     private static App instance;
     private IQuizApiClient quizApiClient;
     private IHistoryStorage historyStorage;
     private Repository repository;
     public AppDatabase database;
+    private Preferences preferences;
 
 
     @Override
@@ -25,6 +27,7 @@ public class App extends Application {
         super.onCreate();
         //opentdbService = new OpentdbService();
         instance = this;
+        preferences = new Preferences(this);
        quizApiClient = new OpentdbService();
        historyStorage = new HistoryStorage();
        repository = new Repository(quizApiClient, historyStorage);
@@ -42,5 +45,9 @@ public class App extends Application {
     }
     public AppDatabase getDatabase() {
         return database;
+    }
+
+    public Preferences getPreferences() {
+        return preferences;
     }
 }

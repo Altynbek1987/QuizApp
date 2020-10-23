@@ -84,8 +84,6 @@ public class ResultActivity extends AppCompatActivity {
         activityResultBinding.btnFinish.setOnClickListener(v -> {
             resultViewModel.saveResult(historyModel);
             Toast.makeText(ResultActivity.this, diff+correct, Toast.LENGTH_LONG).show();
-            Intent intent1 = new Intent(ResultActivity.this, MainActivity.class);
-            startActivity(intent1);
             finish();
 
         });

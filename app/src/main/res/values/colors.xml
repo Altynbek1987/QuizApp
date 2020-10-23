@@ -12,6 +12,10 @@
     <color name="White">#F4EEEE</color>
     <color name="Finish">#4CE2A7</color>
     <color name="Red">#F44336</color>
+    <color name="Black">#61000000</color>
+    <color name="ThemeOne">#60B1F1</color>
+    <color name="ThemeTwo">#CB5DDD</color>
+    <color name="ThemeThree">#EC7067</color>
 
 
 </resources>

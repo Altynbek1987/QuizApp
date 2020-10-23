@@ -1,5 +1,6 @@
 package com.example.quizapp.quiz;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -14,7 +15,7 @@ import java.util.List;
 public class QuizViewModel extends ViewModel implements IQuizApiCallBack.ListQuestion {
     MutableLiveData<Integer> answerAmownt = new MutableLiveData<>(0);
     MutableLiveData<List<ResultModel>> mutableQuestions = new MutableLiveData<>();
-    MutableLiveData<Integer> positionAnswer = new MutableLiveData<>();
+    MutableLiveData<Integer> positionAnswer = new MutableLiveData<>(0);
     MutableLiveData<List<ResultModel>> resultQuiz = new MutableLiveData<>();
 
 
@@ -43,11 +44,18 @@ public class QuizViewModel extends ViewModel implements IQuizApiCallBack.ListQue
     }
 
     void skip(){
-        positionAnswer.setValue(positionAnswer.getValue() + 1);
-
+        if (positionAnswer.getValue() != null){
+            positionAnswer.setValue(positionAnswer.getValue()+1);
+        } else {
+            positionAnswer.setValue(0);
+        }
     }
     void btnBack(){
-        positionAnswer.setValue(positionAnswer.getValue() - 1);
+        if (positionAnswer.getValue() != null){
+            positionAnswer.setValue(positionAnswer.getValue() - 1);
+        }else {
+            positionAnswer.setValue(0);
+        }
     }
 
 //    public void clickSkip(){ //Скиптики

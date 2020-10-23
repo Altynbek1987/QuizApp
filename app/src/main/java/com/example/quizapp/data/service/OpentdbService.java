@@ -3,22 +3,15 @@ package com.example.quizapp.data.service;
 import android.accounts.NetworkErrorException;
 import android.util.Log;
 
-import androidx.constraintlayout.motion.utils.MonotonicCurveFit;
-
 import com.example.quizapp.interfac.IQuizApiCallBack;
 import com.example.quizapp.model.ModelCategory;
 import com.example.quizapp.model.ModelQuestions;
-import com.example.quizapp.model.ResultModel;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
 
 public class OpentdbService implements IQuizApiClient{
 

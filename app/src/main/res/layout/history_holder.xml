@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="?attr/backgroundColor"
     android:padding="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -28,12 +29,14 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textSize="17sp"
+                    android:textColor="?attr/textColor"
                     android:text="Category: " />
                 <TextView
                     android:id="@+id/tv_category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="17sp"
+                    android:textColor="?attr/textColor"
                     android:textStyle="bold"
                     android:text="Mixed" />
             </LinearLayout>
@@ -45,19 +48,23 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/textColor"
                     android:text="Correct answers: " />
                 <TextView
                     android:id="@+id/tv_answers"
                     android:layout_width="match_parent"
+                    android:textColor="?attr/textColor"
                     android:layout_height="wrap_content"
                     android:text="8" />
                 <TextView
                     android:layout_width="match_parent"
+                    android:textColor="?attr/textColor"
                     android:layout_height="wrap_content"
                     android:text="/" />
                 <TextView
                     android:id="@+id/tv_amount_quiz"
                     android:layout_width="match_parent"
+                    android:textColor="?attr/textColor"
                     android:layout_height="wrap_content"
                     android:text="10" />
             </LinearLayout>
@@ -68,10 +75,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/textColor"
                     android:text="Difficulty: " />
                 <TextView
                     android:id="@+id/tv_difficulty"
                     android:layout_width="match_parent"
+                    android:textColor="?attr/textColor"
                     android:layout_height="wrap_content"
                     android:text="Easy" />
             </LinearLayout>
