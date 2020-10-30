@@ -5,10 +5,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
-
 import com.example.quizapp.room.converters.DateConverter;
 import com.example.quizapp.room.converters.QuestionConverter;
-
 import java.util.ArrayList;
 
 @Entity

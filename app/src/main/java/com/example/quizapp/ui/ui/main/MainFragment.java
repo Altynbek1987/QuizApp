@@ -1,14 +1,11 @@
 package com.example.quizapp.ui.ui.main;
 
 import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,19 +18,17 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.quizapp.databinding.MainFragmentBinding;
 import com.example.quizapp.model.TriviaCategory;
 import com.example.quizapp.quiz.QuestionsActivity;
 import com.example.quizapp.R;
 import com.example.quizapp.seek_bar.SimpleSeekBarChangeListenner;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainFragment extends Fragment {
     private SeekBar seekBarr;
-    private TextView textView;
+    private TextView seekText;
     private Button buttonStart;
     private ImageView iconPlus, iconMinus;
     private static int MAIN_FRAGMENT_CODE = 1;
@@ -42,8 +37,6 @@ public class MainFragment extends Fragment {
     private String nameCategoryTitleQuestionActivity;
     MainFragmentBinding mainFragmentBinding;
     private String difficul;
-
-
     private MainViewModel mViewModel;
     private int amount;
 
@@ -73,14 +66,14 @@ public class MainFragment extends Fragment {
         iconPlus = view.findViewById(R.id.icon_plus);
         iconMinus = view.findViewById(R.id.icon_minus);
         buttonStart = view.findViewById(R.id.start_game);
-        textView = view.findViewById(R.id.seek_text);
-        textView.setText("0");
+        seekText = view.findViewById(R.id.seek_text);
+        seekText.setText("0");
         seekBarr = view.findViewById(R.id.seek_bar);
         onClick();
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mViewModel.updateCategory();
         mViewModel.mutableLiveData.observeForever(integer -> {
-            textView.setText(integer+"");
+            seekText.setText(integer+"");
             seekBarr.setProgress(integer);
             amount = integer;
         });
@@ -111,8 +104,6 @@ public class MainFragment extends Fragment {
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     category = modelCategory.getTriviaCategories().get(position).getId();
                     nameCategoryTitleQuestionActivity = modelCategory.getTriviaCategories().get(position).getName();
-
-                    //Toast.makeText(requireContext(), "Selected", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -136,13 +127,17 @@ public class MainFragment extends Fragment {
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("ololo", "buttonStart");
-                Intent intent = new Intent(requireContext(), QuestionsActivity.class);
-                intent.putExtra(QuestionsActivity.KEY, category.intValue());
-                intent.putExtra(QuestionsActivity.KEYNAME,nameCategoryTitleQuestionActivity);
-                intent.putExtra(QuestionsActivity.KEYDIFFICULY,difficul);
-                intent.putExtra(QuestionsActivity.KEYAMOUNT,amount);
-                startActivityForResult(intent, MAIN_FRAGMENT_CODE);
+                if (seekText.getText().toString().equals("0")) {
+                    Toast.makeText(requireActivity(), "Укажите количество вопросов", Toast.LENGTH_LONG).show();
+                }else {
+                    Log.e("ololo", "buttonStart");
+                    Intent intent = new Intent(requireContext(), QuestionsActivity.class);
+                    intent.putExtra(QuestionsActivity.KEY, category.intValue());
+                    intent.putExtra(QuestionsActivity.KEYNAME, nameCategoryTitleQuestionActivity);
+                    intent.putExtra(QuestionsActivity.KEYDIFFICULY, difficul);
+                    intent.putExtra(QuestionsActivity.KEYAMOUNT, amount);
+                    startActivityForResult(intent, MAIN_FRAGMENT_CODE);
+                }
 
             }
         });

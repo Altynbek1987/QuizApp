@@ -1,18 +1,14 @@
 package com.example.quizapp.adapter;
 
-import android.os.Build;
 import android.os.CountDownTimer;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.quizapp.R;
@@ -21,12 +17,10 @@ import com.example.quizapp.interfac.OnAnswerClick;
 import com.example.quizapp.interfac.OnItemClickListener;
 import com.example.quizapp.model.ResultModel;
 import com.example.quizapp.model.ScoreModel;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-
 import static android.content.ContentValues.TAG;
 
 public class AdapterQuestionsActivity extends RecyclerView.Adapter<AdapterQuestionsActivity.ViewHolder> {
@@ -114,8 +108,6 @@ public class AdapterQuestionsActivity extends RecyclerView.Adapter<AdapterQuesti
                 }
                 showCorrectButton();
             }
-
-
             listQuizHolderBinding.tvQuestion.setText(resultModel.getQuestion());
             Log.e("ololo", "onBind: " + resultModel.isChoice() + "  " + resultModel.getIncorrectAnswers().size());
 

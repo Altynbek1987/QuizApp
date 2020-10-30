@@ -4,10 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
-
 import android.os.Bundle;
 import android.view.MenuItem;
-
 import com.example.quizapp.adapter.MainPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -48,9 +46,5 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
-
-
     }
 }

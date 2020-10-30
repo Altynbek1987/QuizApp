@@ -1,6 +1,5 @@
 package com.example.quizapp.pref;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -15,6 +14,14 @@ public class Preferences {
     }
     public int getTheme(int defValue){
        return preferences.getInt("theme",defValue);
+    }
+
+    public void setButton(int value){
+        preferences.edit().putInt("radio",value).apply();
+    }
+    public int getButton(int defValue){
+        return preferences.getInt("radio",defValue);
+
     }
 
 }

@@ -3,21 +3,23 @@ package com.example.quizapp.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.quizapp.R;
 import com.example.quizapp.databinding.HistoryHolderBinding;
+import com.example.quizapp.interfac.OnLongClickListener;
 import com.example.quizapp.model.HistoryModel;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterHistory extends RecyclerView.Adapter<AdapterHistory.HistoryViewHolder> {
 
     private List<HistoryModel> data;
+
+    OnLongClickListener onLongClickListener;
+
+    public void setOnLongClickListener(OnLongClickListener onLongClickListener) {
+        this.onLongClickListener = onLongClickListener;
+    }
 
     public AdapterHistory(List<HistoryModel> data) {
         this.data = data;
@@ -53,11 +55,17 @@ public class AdapterHistory extends RecyclerView.Adapter<AdapterHistory.HistoryV
             super(binding.getRoot());
             historyHolderBinding = binding;
 
+            binding.getRoot().setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    onLongClickListener.onLongItemClick(getAdapterPosition());
+                    return true;
+                }
+            });
         }
 
         public void bind(HistoryModel historyModel) {
             historyHolderBinding.tvDifficulty.setText(historyModel.getDifficulty());
-
             historyHolderBinding.tvCategory.setText(historyModel.getCategory());
             historyHolderBinding.tvAmountQuiz.setText(String.valueOf(historyModel.getAmount_quiz()));
             historyHolderBinding.tvDifficulty.setText(historyModel.getDifficulty());

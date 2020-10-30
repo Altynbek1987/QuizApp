@@ -5,9 +5,10 @@
     <string name="leave_feedback">Leave feedback</string>
     <string name="clear_history">Clear history</string>
     <string name="questions_amount">Questions amount:</string>
-    <string name="category">Category</string>
-    <string name="difficulty">Difficulty</string>
     <string name="start">Start</string>
+    <string name="category">Категория</string>
+    <string name="amount">Количество вопросов</string>
+    <string name="difficulty">Сложность</string>
 
     <style name="splashScreen">SplashScreen</style>
 

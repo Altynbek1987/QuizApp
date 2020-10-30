@@ -2,7 +2,6 @@ package com.example.quizapp.data.service;
 
 import com.example.quizapp.model.ModelCategory;
 import com.example.quizapp.model.ModelQuestions;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

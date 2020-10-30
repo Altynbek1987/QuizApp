@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+    <data>
+        <variable
+            name="model"
+            type="com.example.quizapp.model.ResultModel" />
+    </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,23 +22,22 @@
             android:id="@+id/linear_clear"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:orientation="horizontal"
-            android:background="?attr/backgroundColor">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:padding="10dp"
+                android:padding="15dp"
                 android:layout_weight="1"
                 android:textColor="?attr/textColor"
-                android:text="@string/clear_history"
+                android:text="Clear the history"
                 android:textSize="18sp" />
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="3"
+                android:layout_weight="8"
                 android:src="@drawable/ic_vector_stroke"/>
         </LinearLayout>
 
@@ -47,6 +51,21 @@
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/list_theme_holder" />
+
+    <Button
+        android:id="@+id/btn_open_recycler"
+        android:layout_margin="10dp"
+        android:text="Select a topic"
+        android:textAllCaps="false"
+        android:background="?attr/backgroundColor_2"
+        android:gravity="center_vertical"
+        android:padding="15dp"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif"
+        android:drawableEnd="@drawable/ic_vector_stroke"
+        android:layout_width="match_parent"
+        android:textColor="?attr/textColor"
+        android:layout_height="80dp"/>
 
 </LinearLayout>
 </layout>

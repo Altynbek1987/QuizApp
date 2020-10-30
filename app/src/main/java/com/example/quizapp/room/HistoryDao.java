@@ -24,9 +24,6 @@ public interface HistoryDao {
     @Query("SELECT*FROM historymodel WHERE id=:id")
     HistoryModel getById(int id);
 
-//    @Query("SELECT*FROM historymodel")
-//    HistoryModel getByDifficulty(String difficulty);
-
     @Delete
     void delete(HistoryModel historyModel);
 

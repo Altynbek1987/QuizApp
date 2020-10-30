@@ -1,11 +1,8 @@
 
 package com.example.quizapp.model;
-
-import androidx.lifecycle.MutableLiveData;
+import android.text.Html;
 
 import java.util.List;
-import java.util.Map;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -111,6 +108,9 @@ public class ResultModel {
     }
 
     public List<String> getIncorrectAnswers() {
+        for (int i = 0; i < incorrectAnswers.size() -1; i++) {
+            incorrectAnswers.set(i, Html.fromHtml(Html.fromHtml(incorrectAnswers.get(i)).toString()).toString());
+        }
         return incorrectAnswers;
     }
 

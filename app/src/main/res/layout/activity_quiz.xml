@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:textColor="?attr/textColor"
             android:text="Geography"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -42,14 +43,16 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="80dp"
-        android:progressTint="#DBA5F5"
-        android:thumbTint="#DBA5F5" />
+        android:background="?attr/backgroundColor_2"
+        android:progressTint="?attr/textColor_2"
+        android:thumbTint="?attr/textColor_2" />
 
     <TextView
         android:id="@+id/tv_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="?attr/textColor"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="0" />

@@ -2,11 +2,9 @@ package com.example.quizapp.data.service;
 
 import android.accounts.NetworkErrorException;
 import android.util.Log;
-
 import com.example.quizapp.interfac.IQuizApiCallBack;
 import com.example.quizapp.model.ModelCategory;
 import com.example.quizapp.model.ModelQuestions;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

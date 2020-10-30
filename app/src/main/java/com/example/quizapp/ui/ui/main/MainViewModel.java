@@ -2,7 +2,6 @@ package com.example.quizapp.ui.ui.main;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
 import com.example.quizapp.App;
 import com.example.quizapp.interfac.IQuizApiCallBack;
 import com.example.quizapp.model.ModelCategory;

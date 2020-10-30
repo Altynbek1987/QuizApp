@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-
 import com.example.quizapp.ui.ui.history.HistoryFragment;
 import com.example.quizapp.ui.ui.main.MainFragment;
 import com.example.quizapp.ui.ui.settings.SettingsFragment;

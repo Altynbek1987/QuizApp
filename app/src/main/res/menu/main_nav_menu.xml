@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/main_btn"
-        android:icon="@drawable/ic_shape"
-        android:title="Quiz" />
+        android:icon="@drawable/ic_home"
+        android:title="Main" />
 
     <item
         android:id="@+id/history_btn"
-        android:icon="@drawable/ic_group"
+        android:icon="@drawable/ic_baseline_history_24"
         android:title="History" />
 
     <item
         android:id="@+id/settings_btn"
-        android:icon="@drawable/ic_group1"
+        android:icon="@drawable/ic_settings"
         android:title="Settings" />
 
 </menu>

@@ -2,6 +2,7 @@
 <layout>
     <data>
         <import type="android.view.View"/>
+        <import type="android.text.Html"/>
         <variable
             name="listener"
             type="com.example.quizapp.interfac.OnAnswerClick" />
@@ -26,7 +27,7 @@
         android:gravity="center"
         android:layout_marginBottom="5dp"
         android:textColor="?attr/textColor"
-        android:text="What is largest city and commercial capital of Sri Lanka?"
+        android:text="@{Html.fromHtml(Html.fromHtml(model.question).toString())}"
         android:textStyle="bold" />
 
     <LinearLayout

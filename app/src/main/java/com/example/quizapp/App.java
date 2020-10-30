@@ -1,9 +1,7 @@
 package com.example.quizapp;
 
 import android.app.Application;
-
 import androidx.room.Room;
-
 import com.example.quizapp.data.Repository;
 import com.example.quizapp.data.locally.HistoryStorage;
 import com.example.quizapp.data.locally.IHistoryStorage;
@@ -46,7 +44,6 @@ public class App extends Application {
     public AppDatabase getDatabase() {
         return database;
     }
-
     public Preferences getPreferences() {
         return preferences;
     }

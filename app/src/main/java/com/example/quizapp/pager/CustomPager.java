@@ -3,7 +3,6 @@ package com.example.quizapp.pager;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 

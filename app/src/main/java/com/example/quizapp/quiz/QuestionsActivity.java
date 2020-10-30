@@ -4,13 +4,11 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-
 import com.example.quizapp.App;
 import com.example.quizapp.R;
 import com.example.quizapp.adapter.AdapterQuestionsActivity;
@@ -39,7 +37,6 @@ public class QuestionsActivity extends AppCompatActivity implements OnAnswerClic
         setTheme(App.getInstance().getPreferences().getTheme(R.style.AppTheme));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-
         activityQuizBinding = DataBindingUtil.setContentView(this, R.layout.activity_quiz);
         quizViewModel = ViewModelProviders.of(this).get(QuizViewModel.class);
         //Сначала это вызываем потом вызываем quizViewModel.updateQuestion("easy", category, amount);
@@ -55,8 +52,6 @@ public class QuestionsActivity extends AppCompatActivity implements OnAnswerClic
         Log.e("log"," "+categ);
         activityQuizBinding.tvProgressBar.setText(intent.getStringExtra(KEYDIFFICULY));
         int amount = intent.getIntExtra(KEYAMOUNT, 10);
-
-
         activityQuizBinding.progressBar.setMax(amount);
         activityQuizBinding.progressBar.setProgress(0);
         horizontalAdapter = new AdapterQuestionsActivity();
@@ -68,7 +63,6 @@ public class QuestionsActivity extends AppCompatActivity implements OnAnswerClic
         });
 
         quizViewModel.updateQuestion("easy", category, amount); //Вызываем после quizViewModel.answerAmownt.observeForever(new Observer<Integer>());
-
         horizontalAdapter.setOnItemClickListener(position -> {
             Log.e("ololo", "onItemClick: " + position + "  " + (amountQuestions - 1));
             if (position >= amountQuestions - 1) {
@@ -100,7 +94,6 @@ public class QuestionsActivity extends AppCompatActivity implements OnAnswerClic
 
     @Override
     public void onAnswer(View view, int positionQuestion, int positionAnswer) {
-
     }
 
     @Override
